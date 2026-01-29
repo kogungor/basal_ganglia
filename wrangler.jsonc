@@ -1,7 +1,8 @@
 {
-  "name": "basal-ganglia",
+  "name": "basalganglia",
   "compatibility_date": "2026-01-29",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
   }
 }
