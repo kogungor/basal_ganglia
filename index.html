@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Brain Animation</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="uiPanel">
+    <h2 id="phaseTitle">START</h2>
+
+    <div class="status-line">
+      <span>Direct Pathway (GO) <br><small style="color:#666; font-size:10px;">Phone / D1 Receptor</small></span>
+      <span id="phoneVal">10 Hz</span>
+    </div>
+    <div class="graph-container">
+      <canvas id="phoneGraph" width="300" height="50"></canvas>
+    </div>
+
+    <div class="status-line">
+      <span>Indirect Pathway (NO-GO) <br><small style="color:#666; font-size:10px;">Sport / D2 Receptor</small></span>
+      <span id="sportVal">10 Hz</span>
+    </div>
+    <div class="graph-container">
+      <canvas id="sportGraph" width="300" height="50"></canvas>
+    </div>
+
+    <p id="descText">Simulation initializing. Brain in resting state.</p>
+    <div class="btn-group">
+      <button id="backBtn" class="secondary-btn">BACK</button>
+      <button id="actionBtn" class="primary-btn">START SCENARIO</button>
+    </div>
+
+    <div id="consolePanel">
+      <div class="log-entry">System: Initializing Basal Ganglia...</div>
+    </div>
+  </div>
+  <div id="canvas-container"></div>
+  <div id="watermark" font-size:"16px">by KOG</div>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>

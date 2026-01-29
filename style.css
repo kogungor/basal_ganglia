@@ -1,0 +1,335 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+  font-family: "Rajdhani", sans-serif;
+  color: white;
+}
+
+#canvas-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* UI Panel */
+#uiPanel {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  width: 400px;
+  /* Increased from 350px */
+  max-width: 90vw;
+  /* Responsive constraint */
+  background: rgba(10, 10, 15, 0.85);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-left: 4px solid #00d2ff;
+  padding: 30px;
+  /* Increased padding */
+  backdrop-filter: blur(10px);
+  border-radius: 0 15px 15px 0;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
+  user-select: none;
+  z-index: 10;
+}
+
+/* Responsive adjustment for Mobile */
+@media (max-width: 600px) {
+  #uiPanel {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    border-left: 0;
+    border-top: 4px solid #00d2ff;
+    padding: 25px;
+  }
+}
+
+h2 {
+  margin: 0 0 15px 0;
+  font-size: 28px;
+  /* Increased */
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  background: -webkit-linear-gradient(0deg, #00d2ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.status-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 16px;
+  /* Increased */
+  color: #889;
+}
+
+.graph-container {
+  height: 60px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 25px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.bar-container {
+  height: 6px;
+  /* Increased */
+  background: #222;
+  width: 100%;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#phoneBar {
+  background: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+#sportBar {
+  background: #ff8800;
+  box-shadow: 0 0 10px #ff8800;
+}
+
+p {
+  font-size: 17px;
+  /* Increased */
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+/* Button Group */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+button {
+  padding: 14px 20px;
+  /* Bigger buttons */
+  font-size: 16px;
+  /* Larger text */
+  letter-spacing: 1.2px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  border-radius: 6px;
+  /* subtle radius */
+}
+
+/* Primary Action Button (Next) */
+.primary-btn {
+  background: transparent;
+  border: 1px solid #00d2ff;
+  color: #00d2ff;
+  flex-grow: 2;
+  /* Takes more space */
+}
+
+.primary-btn:hover {
+  background: rgba(0, 210, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+/* Secondary Action Button (Back) */
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ccc;
+  flex-grow: 1;
+  /* Smaller */
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Scientific Labels */
+.label {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  backdrop-filter: blur(2px);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.label::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.label.visible {
+  opacity: 1;
+}
+
+.label.active-pulse {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.label-cortex {
+  color: #aaa;
+  border-color: #aaa;
+}
+
+.label-striatum {
+  color: #00ffff;
+  border-color: #00ffff;
+}
+
+.label-snc {
+  color: #00ff00;
+  border-color: #00ff00;
+}
+
+.label-gpe {
+  color: #ff8800;
+  border-color: #ff8800;
+}
+
+.label-thalamus {
+  color: #ff00ff;
+  border-color: #ff00ff;
+}
+
+/* Thought Bubbles */
+.thought-bubble {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.5s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.thought-bubble.visible {
+  opacity: 1;
+  transform: scale(1) translateY(-10px);
+}
+
+/* Console Panel - Scientific Log */
+#consolePanel {
+  margin-top: 15px;
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid #113333;
+  border-left: 2px solid #00d2ff;
+  border-radius: 4px;
+  height: 180px;
+  /* Increased from 120px */
+  overflow-y: auto;
+  /* Enable Scroll */
+  padding: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #4af626;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; Remove to allow natural scrolling behaviour from top or handle via JS scrolling */
+}
+
+/* Custom Scrollbar for Console */
+#consolePanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+#consolePanel::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#consolePanel::-webkit-scrollbar-thumb {
+  background: #00d2ff;
+  border-radius: 3px;
+  opacity: 0.5;
+}
+
+#consolePanel::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.log-entry {
+  margin-bottom: 2px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.log-entry:last-child {
+  opacity: 1;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 5px #4af626;
+}
+
+.log-time {
+  color: #0088aa;
+  margin-right: 6px;
+  font-size: 10px;
+}
+
+/* Watermark */
+#watermark {
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+  font-size: 26px;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: "Rajdhani", sans-serif;
+  letter-spacing: 1px;
+  pointer-events: none;
+  z-index: 5;
+}
+
